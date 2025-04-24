@@ -21,6 +21,12 @@ fn process_instruction(
         return Err(ProgramError::IncorrectProgramId);
     };
 
+    if accounts.len() < 1 {
+        msg!("❌ Not enough accounts");
+        return Err(ProgramError::NotEnoughAccountKeys);
+    }
+    let account = &accounts[0];
+
     // You can verify the list has the correct number of accounts.
     // This error will get thrown by default if you
     //      try to reach past the end of the iter.
